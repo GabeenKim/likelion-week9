@@ -6,7 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 const app = express();
-const port = 3300;
+const port = process.env.PORT;
 
 const { sequelize } = require("../models");
 sequelize
