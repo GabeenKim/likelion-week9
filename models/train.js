@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
 module.exports = class Train extends Sequelize.Model {
   static init(sequelize) {
@@ -13,18 +13,18 @@ module.exports = class Train extends Sequelize.Model {
       {
         sequelize,
         timestamps: false,
-        modelName: 'Train',
-        tableName: 'Trains',
+        modelName: "Train",
+        tableName: "Trains",
         paranoid: false,
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_general_ci',
+        charset: "utf8mb4",
+        collate: "utf8mb4_general_ci",
       }
     );
   }
   static associate(db) {
     db.Train.hasMany(db.Comp, {
-      foriegnKey: { name: 'train_id', type: Sequelize.INTEGER },
-      targetKey: 'id',
+      foriegnKey: { name: "train_id", type: Sequelize.INTEGER },
+      targetKey: "id",
     });
   }
 };

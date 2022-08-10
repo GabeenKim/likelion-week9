@@ -23,7 +23,7 @@ module.exports = {
       "안동",
     ];
     for (let i in station) {
-      await queryInterface.bulkInsert("stations", [
+      await queryInterface.bulkInsert("Stations", [
         {
           station_name: station[i],
         },
@@ -32,6 +32,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("stations", null, {});
+    await queryInterface.bulkDelete("Stations", null, {});
   },
 };

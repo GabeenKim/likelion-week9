@@ -8,7 +8,7 @@ module.exports = {
     const now = new Date();
 
     for (let i = 0; i < 3; i++) {
-      await queryInterface.bulkInsert("trains", [
+      await queryInterface.bulkInsert("Trains", [
         //서울-김천구미
         {
           train_grade_name: trainType[i],
@@ -97,12 +97,12 @@ module.exports = {
     }
 
     const trains = await queryInterface.sequelize.query(
-      `SELECT id FROM trains;`
+      `SELECT id FROM Trains;`
     );
     const trainsRows = trains[0];
 
     for (let i in trainsRows) {
-      await queryInterface.bulkInsert("comps", [
+      await queryInterface.bulkInsert("Comps", [
         {
           train_id: trainsRows[i].id,
           comp_name: "1호차",
@@ -121,12 +121,12 @@ module.exports = {
       ]);
     }
 
-    const comps = await queryInterface.sequelize.query(`SELECT id FROM comps;`);
+    const comps = await queryInterface.sequelize.query(`SELECT id FROM Comps;`);
     const compsRows = comps[0];
 
     for (let i in compsRows) {
       for (let j = 1; j < 5; j++) {
-        await queryInterface.bulkInsert("seats", [
+        await queryInterface.bulkInsert("Seats", [
           {
             comp_id: compsRows[i].id,
             seat_name: j + "A",
@@ -153,8 +153,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("comps", null, {});
-    await queryInterface.bulkDelete("seats", null, {});
-    await queryInterface.bulkDelete("trains", null, {});
+    await queryInterface.bulkDelete("Comps", null, {});
+    await queryInterface.bulkDelete("Seats", null, {});
+    await queryInterface.bulkDelete("Trains", null, {});
   },
 };

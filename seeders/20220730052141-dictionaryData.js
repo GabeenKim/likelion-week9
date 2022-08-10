@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert("dictionaryDatas", [
+    await queryInterface.bulkInsert("DictionaryDatas", [
       {
         loanword: "세트",
         meaning:
@@ -53,6 +53,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("dictionaryDatas", null, {});
+    await queryInterface.bulkDelete("DictionaryDatas", null, {});
   },
 };
