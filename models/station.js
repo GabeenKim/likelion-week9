@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 
 module.exports = class Station extends Sequelize.Model {
   static init(sequelize) {
@@ -9,11 +9,11 @@ module.exports = class Station extends Sequelize.Model {
       {
         sequelize,
         timestamps: false,
-        modelName: "Station",
-        tableName: "Stations",
+        modelName: 'Station',
+        tableName: 'Stations',
         paranoid: false,
-        charset: "utf8mb4",
-        collate: "utf8mb4_general_ci",
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_general_ci',
       }
     );
   }

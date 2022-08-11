@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 
 module.exports = class DictionaryData extends Sequelize.Model {
   static init(sequelize) {
@@ -12,11 +12,11 @@ module.exports = class DictionaryData extends Sequelize.Model {
       {
         sequelize,
         timestamps: false,
-        modelName: "DictionaryData",
-        tableName: "DictionaryDatas",
+        modelName: 'DictionaryData',
+        tableName: 'DictionaryDatas',
         paranoid: false,
-        charset: "utf8mb4",
-        collate: "utf8mb4_general_ci",
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_general_ci',
       }
     );
   }

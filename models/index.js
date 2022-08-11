@@ -1,12 +1,12 @@
-const { Sequelize } = require("sequelize");
-const Station = require("./station");
-const Train = require("./train");
-const Comp = require("./comp");
-const Seat = require("./seat");
-const DictionaryData = require("./dictionaryData");
+const { Sequelize } = require('sequelize');
+const Station = require('./station');
+const Train = require('./train');
+const Comp = require('./comp');
+const Seat = require('./seat');
+const DictionaryData = require('./dictionaryData');
 
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.js")[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 const sequelize = new Sequelize(

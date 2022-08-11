@@ -1,4 +1,4 @@
-import * as korailRepository from "../db/korail.js";
+import * as korailRepository from '../db/korail.js';
 
 export async function getStations(req, res) {
   const data = await korailRepository.getStations();

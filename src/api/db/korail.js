@@ -1,9 +1,9 @@
-import sequelize from "sequelize";
-import Station from "../../../models/station";
-import Train from "../../../models/train";
-import Seat from "../../../models/seat";
-import { add, differenceInMinutes, getDay, format } from "date-fns";
-import Comp from "../../../models/comp";
+import sequelize from 'sequelize';
+import Station from '../../../models/station';
+import Train from '../../../models/train';
+import Seat from '../../../models/seat';
+import { add, differenceInMinutes, getDay, format } from 'date-fns';
+import Comp from '../../../models/comp';
 
 export async function getStations() {
   return await Station.findAll();
@@ -20,48 +20,48 @@ export async function getDate() {
   const kraNow = new Date(utcNow + krTimeCalculate);
 
   let dayOfWeek = getDay(kraNow); //일요일 : 0, 토요일 : 6)
-  const date = format(kraNow, "yyyy-MM-dd");
-  const time = format(kraNow, "HH:mm");
+  const date = format(kraNow, 'yyyy-MM-dd');
+  const time = format(kraNow, 'HH:mm');
 
   let nextDate = [];
   let nextDay = [];
   for (let i = 0; i < 31; i++) {
-    nextDate[i] = format(add(kraNow, { days: 1 + i }), "MM-dd");
+    nextDate[i] = format(add(kraNow, { days: 1 + i }), 'MM-dd');
     nextDay[i] = getDay(add(kraNow, { days: 1 + i }));
     switch ((dayOfWeek, nextDay[i])) {
       case 0:
-        dayOfWeek = "일요일";
-        nextDay[i] = "일";
+        dayOfWeek = '일요일';
+        nextDay[i] = '일';
         break;
       case 1:
-        dayOfWeek = "월요일";
-        nextDay[i] = "월";
+        dayOfWeek = '월요일';
+        nextDay[i] = '월';
         break;
       case 2:
-        dayOfWeek = "화요일";
-        nextDay[i] = "화";
+        dayOfWeek = '화요일';
+        nextDay[i] = '화';
         break;
       case 3:
-        dayOfWeek = "수요일";
-        nextDay[i] = "수";
+        dayOfWeek = '수요일';
+        nextDay[i] = '수';
         break;
       case 4:
-        dayOfWeek = "목요일";
-        nextDay[i] = "목";
+        dayOfWeek = '목요일';
+        nextDay[i] = '목';
         break;
       case 5:
-        dayOfWeek = "금요일";
-        nextDay[i] = "금";
+        dayOfWeek = '금요일';
+        nextDay[i] = '금';
         break;
       case 6:
-        dayOfWeek = "토요일";
-        nextDay[i] = "토";
+        dayOfWeek = '토요일';
+        nextDay[i] = '토';
         break;
     }
   }
   let timeTable = [];
   for (let i = 0; i < 24; i++) {
-    timeTable[i] = i + "시";
+    timeTable[i] = i + '시';
   }
   const today = {
     currentDate: date,
@@ -81,7 +81,7 @@ export async function getCompAndSeatById(trainNo, compId) {
     include: [
       {
         model: Seat,
-        attributes: ["id", "seat_name", "is_booked"],
+        attributes: ['id', 'seat_name', 'is_booked'],
         where: { comp_id: compId },
       },
     ],
@@ -90,10 +90,10 @@ export async function getCompAndSeatById(trainNo, compId) {
 
 export async function getTrainById(trainNo) {
   const depPlaceTime = await Train.findByPk(trainNo, {
-    attributes: ["dep_pland_time"],
+    attributes: ['dep_pland_time'],
   });
   const arrPlaceTime = await Train.findByPk(trainNo, {
-    attributes: ["arr_pland_time"],
+    attributes: ['arr_pland_time'],
   });
   const minuteDiff = differenceInMinutes(
     arrPlaceTime.dataValues.arr_pland_time,
@@ -130,14 +130,14 @@ export async function createTicket(trainNo, compId, seats) {
     include: [
       {
         model: Comp,
-        attributes: ["id", "comp_name", "comp_type"],
+        attributes: ['id', 'comp_name', 'comp_type'],
         where: {
           id: compId,
         },
         include: [
           {
             model: Seat,
-            attributes: ["id", "seat_name"],
+            attributes: ['id', 'seat_name'],
             where: { id: { [sequelize.Op.or]: seatIds } },
           },
         ],
