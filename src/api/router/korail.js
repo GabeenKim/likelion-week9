@@ -22,6 +22,8 @@ router.get('/trains/:id', korailController.getTrainById);
 router.get('/trains/:trainNo/:compId', korailController.getCompById);
 
 //POST /book
-router.post('/book', korailController.createTicket);
+router.post('/book', korailController.setCookie);
 
+//POST /book
+router.get('/book', korailController.getTicket);
 export default router;

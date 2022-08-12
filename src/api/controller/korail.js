@@ -54,9 +54,24 @@ export async function getCompById(req, res) {
   return res.status(200).json({ data });
 }
 
-export async function createTicket(req, res) {
+export async function setCookie(req, res, next) {
   const { trainNo, compId, seats } = req.body;
-  const data = await korailRepository.createTicket(trainNo, compId, seats);
+  res
+    .cookie(
+      'dataSet',
+      { trainNo: trainNo, compId: compId, seats: seats },
+      { maxAge: 1000000 }
+    )
+    .send('cookie set');
+}
+
+export async function getTicket(req, res) {
+  const { dataSet } = req.cookies;
+  const data = await korailRepository.createTicket(
+    dataSet.trainNo,
+    dataSet.compId,
+    dataSet.seats
+  );
   if (!data) {
     return res.status(400).json({ error: `Cannot create ticket` });
   }
