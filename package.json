@@ -30,7 +30,7 @@
     "prettier": "^2.7.1"
   },
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "pm2 start src/index.js",
     "dev": "nodemon src/index.js --exec babel-node"
   }
 }
